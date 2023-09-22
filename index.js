@@ -11,12 +11,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve static files from the "public" directory
+// Define the directory containing your static files (CSS, JS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define the route to serve the HTML file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'HTML', 'index.html'));
 });
 
 app.listen(port, () => {
