@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Express App</title>
+    <title>AJAX Example</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css" />
 </head>
 <body>
-    <h1>Welcome to My Express App</h1>
-    <p>This is a sample HTML page served by Express.</p>
+    <h1>ASSIGNEMENT</h1>
+    <img src="IMG/26794-6-welcome-transparent.png" alt="Image Description">
+
+    <button id="button1" data-parameter="parameter1">Load Data 1</button>
+    <button id="button2" data-parameter="parameter2">Load Data 2</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Function to make an AJAX request
+        function fetchData(parameter) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById("result").innerHTML = response.message;
+                }
+            };
+            xhr.open("GET", `/api/data?parameter=${parameter}`, true);
+            xhr.send();
+        }
+
+        // Event listener for the buttons
+        document.getElementById("button1").addEventListener("click", function () {
+            var parameter = this.getAttribute("data-parameter");
+            fetchData(parameter);
+        });
+
+        document.getElementById("button2").addEventListener("click", function () {
+            var parameter = this.getAttribute("data-parameter");
+            fetchData(parameter);
+        });
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
